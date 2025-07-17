@@ -32,6 +32,9 @@
 <body>
   <canvas id="gameCanvas" width="900" height="500"></canvas>
   <div id="scoreBoard">Punkte: 0</div>
+  <audio id="collectSound" src="sounds/collect.ogg"></audio>
+  <audio id="failSound" src="sounds/fail.ogg"></audio>
+  <audio id="bgMusic" src="sounds/music.mp3" loop autoplay></audio>
   <script>
     const canvas = document.getElementById("gameCanvas");
     const ctx = canvas.getContext("2d");

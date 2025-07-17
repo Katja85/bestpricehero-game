@@ -1,0 +1,30 @@
+// sounds.js
+
+// 🔊 Soundeffekte vorbereiten
+const collectSound = new Audio("https://actions.google.com/sounds/v1/cartoon/wood_plank_flicks.ogg");
+const failSound = new Audio("https://actions.google.com/sounds/v1/cartoon/clang_and_wobble.ogg");
+
+// 🔁 Hintergrundmusik
+const bgMusic = new Audio("https://files.freemusicarchive.org/storage-freemusicarchive-org/music/no_curator/Komiku/Battle_Of_Pogs/Komiku_-_03_-_Run_Run_Run.mp3");
+bgMusic.loop = true;
+bgMusic.volume = 0.5; // optional: etwas leiser
+
+// ▶️ Funktionen zum Abspielen
+function playCollectSound() {
+  collectSound.currentTime = 0;
+  collectSound.play();
+}
+
+function playFailSound() {
+  failSound.currentTime = 0;
+  failSound.play();
+}
+
+function startBackgroundMusic() {
+  bgMusic.play();
+}
+
+function stopBackgroundMusic() {
+  bgMusic.pause();
+  bgMusic.currentTime = 0;
+}

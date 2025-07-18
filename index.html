@@ -31,11 +31,9 @@
 </head>
 <body>
   <canvas id="gameCanvas" width="900" height="500"></canvas>
-  <div id="scoreBoard">Punkte: 0</div>  <!-- Soundfunktionen laden -->
+  <div id="scoreBoard">Punkte: 0</div>   
+  
   <script src="sounds.js"></script>
-  <audio id="collectSound" src="https://actions.google.com/sounds/v1/cartoon/wood_plank_flicks.ogg"></audio>
-  <audio id="failSound" src="https://actions.google.com/sounds/v1/cartoon/clang_and_wobble.ogg"></audio>
-  <audio id="bgMusic" src="id="bgMusic" src="https://files.freemusicarchive.org/storage-freemusicarchive-org/music/no_curator/Komiku/Battle_Of_Pogs/Komiku_-_03_-_Run_Run_Run.mp3" loop autoplay></audio>
   <script>
     const canvas = document.getElementById("gameCanvas");
     const ctx = canvas.getContext("2d");
@@ -118,7 +116,14 @@
         ) {
           score += p.value;
           document.getElementById("scoreBoard").innerText = `Punkte: ${score}`;
-          if (p.color === "red") gameOver = true;
+           if (p.color === "red") {
+            stopBackgroundMusic();
+            playFailSound();
+            gameOver = true;
+            return;
+          } else {
+            playCollectSound();
+          }
           prices.splice(i, 1);
           break;
         }
@@ -161,15 +166,15 @@
 
     document.addEventListener("keydown", (e) => {
       if (e.key === "ArrowUp") player.dy = player.lift;
+      startBackgroundMusic();
     });
 
     document.addEventListener("touchstart", () => {
       player.dy = player.lift;
+      startBackgroundMusic();
     });
 
-    sparheldImg.onload = () => gameLoop();startBackgroundMusic();stopBackgroundMusic();
-playFailSound();
- </script>
-  <script src="sounds.js"></script>
+    sparheldImg.onload = () => gameLoop();
+  </script>
 </body>
 </html>
